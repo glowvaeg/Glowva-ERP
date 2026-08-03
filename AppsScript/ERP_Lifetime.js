@@ -10,7 +10,7 @@ function updateLifetime() {
   const ui = SpreadsheetApp.getUi();
 
   try {
-
+const reportSheet = getSheet("تقرير مبيعات اصناف");
 const ss = SpreadsheetApp.getActiveSpreadsheet();
 
 SpreadsheetApp.getUi().alert(
