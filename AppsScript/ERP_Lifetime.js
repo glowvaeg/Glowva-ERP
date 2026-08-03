@@ -11,8 +11,15 @@ function updateLifetime() {
 
   try {
 
-    const reportSheet = getSheet(CONFIG.MONTH_REPORT_SHEET);
+const ss = SpreadsheetApp.getActiveSpreadsheet();
 
+SpreadsheetApp.getUi().alert(
+  "Spreadsheet: " + ss.getName() +
+  "\n\nSheets:\n" +
+  ss.getSheets().map(s => s.getName()).join("\n")
+);
+
+const reportSheet = getSheet(CONFIG.MONTH_REPORT_SHEET);
     if (!reportSheet)
       throw new Error("لم يتم العثور على تقرير الأصناف.");
 
