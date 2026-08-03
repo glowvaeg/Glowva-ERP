@@ -1,19 +1,30 @@
 /**
- * ==========================================
- * Glowva ERP
- * ERP_Rebuild.js
- * إعادة بناء ملف Lifetime بالكامل
- * ==========================================
+ * إعادة بناء Lifetime
  */
-
 function rebuildLifetime() {
   const ui = SpreadsheetApp.getUi();
 
   try {
+
+    const folder = DriveApp.getFolderById(CONFIG.MONTHS_FOLDER_ID);
+
+    const files = [];
+    const iterator = folder.getFiles();
+
+    while (iterator.hasNext()) {
+      const file = iterator.next();
+
+      if (file.getName() >= "2026_07") {
+        files.push(file);
+      }
+    }
+
+    files.sort((a, b) => a.getName().localeCompare(b.getName()));
+
     ui.alert(
-      "إعادة بناء Lifetime",
-      "سيتم تنفيذ هذه الميزة في الخطوة التالية.",
-      ui.ButtonSet.OK
+      "سيتم قراءة " +
+      files.length +
+      " ملف بداية من 2026_07"
     );
 
   } catch (err) {
