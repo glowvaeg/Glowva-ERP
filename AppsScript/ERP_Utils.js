@@ -39,15 +39,34 @@ function lastRow(sheet) {
 function readData(sheet, startRow) {
 
   const lr = sheet.getLastRow();
+  const lc = sheet.getLastColumn();
 
-  if (lr < startRow) return [];
+  SpreadsheetApp.getUi().alert(
+    "Sheet: " + sheet.getName() +
+    "\nLast Row: " + lr +
+    "\nLast Column: " + lc +
+    "\nStart Row: " + startRow
+  );
 
-  return sheet.getRange(
+  if (lr < startRow) {
+    SpreadsheetApp.getUi().alert(
+      "لا توجد صفوف للقراءة."
+    );
+    return [];
+  }
+
+  const data = sheet.getRange(
     startRow,
     1,
     lr - startRow + 1,
-    sheet.getLastColumn()
+    lc
   ).getValues();
+
+  SpreadsheetApp.getUi().alert(
+    "Rows Read: " + data.length
+  );
+
+  return data;
 }
 
 /**

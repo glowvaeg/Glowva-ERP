@@ -19,11 +19,11 @@ SpreadsheetApp.getUi().alert(
   ss.getSheets().map(s => s.getName()).join("\n")
 );
 
-const reportSheet = getSheet(CONFIG.MONTH_REPORT_SHEET);
     if (!reportSheet)
       throw new Error("لم يتم العثور على تقرير الأصناف.");
 
     const monthData = readData(reportSheet, 5);
+    ui.alert("Rows in report: " + monthData.length);
 
     if (monthData.length === 0) {
       ui.alert("لا توجد بيانات داخل تقرير الأصناف.");
@@ -34,6 +34,10 @@ const reportSheet = getSheet(CONFIG.MONTH_REPORT_SHEET);
 
     const lifeSheet =
       lifetimeSS.getSheetByName(CONFIG.LIFETIME_SHEET);
+      ui.alert(
+  "Lifetime sheet: " +
+  (lifeSheet ? lifeSheet.getName() : "NOT FOUND")
+);
 
     if (!lifeSheet)
       throw new Error("لم يتم العثور على ملف Lifetime.");
