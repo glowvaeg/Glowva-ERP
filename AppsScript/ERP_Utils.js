@@ -49,9 +49,14 @@ function readData(sheet, startRow) {
   );
 
   if (lr < startRow) {
+
     SpreadsheetApp.getUi().alert(
-      "لا توجد صفوف للقراءة."
+      "لا توجد صفوف للقراءة." +
+      "\n\nSheet: " + sheet.getName() +
+      "\nLast Row: " + lr +
+      "\nStart Row: " + startRow
     );
+
     return [];
   }
 
@@ -80,13 +85,13 @@ function buildProductMap(data, productColumn) {
 
     const name = String(row[productColumn - 1]).trim();
 
-    if (name !== "")
+    if (name !== "") {
       map[name] = index;
+    }
 
   });
 
   return map;
-
 }
 
 /**
@@ -117,5 +122,4 @@ function addLog(fileName, added, status) {
     added,
     status
   ]);
-
 }
