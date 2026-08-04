@@ -6,7 +6,7 @@
  */
 
 function onOpen() {
-
+  Products.initialize();
   SpreadsheetApp.getUi()
 
     .createMenu("Glowva ERP")
